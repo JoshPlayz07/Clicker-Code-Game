@@ -8,8 +8,9 @@ input.onPinPressed(TouchPin.P0, function () {
             # . # . .
             . # . . .
             `)
-        basic.pause(500)
+        basic.pause(1000)
         basic.clearScreen()
+        basic.pause(100)
         points_per_click += 1
         points += upgrade_1_remove_cost
         upgrade_1_cost = upgrade_1_cost + 50
@@ -24,13 +25,14 @@ input.onPinPressed(TouchPin.P0, function () {
             `)
         basic.pause(1000)
         basic.clearScreen()
+        basic.pause(100)
     }
 })
 // Add Points Per Click
 input.onButtonPressed(Button.A, function () {
     points += points_per_click
     led.plot(2, 2)
-    basic.pause(100)
+    basic.pause(50)
     led.unplot(2, 2)
     led.plot(2, 3)
     led.plot(1, 3)
@@ -40,7 +42,7 @@ input.onButtonPressed(Button.A, function () {
     led.plot(3, 1)
     led.plot(3, 2)
     led.plot(3, 3)
-    basic.pause(100)
+    basic.pause(50)
     led.unplot(2, 3)
     led.unplot(1, 3)
     led.unplot(1, 2)
@@ -66,8 +68,9 @@ input.onButtonPressed(Button.A, function () {
     led.plot(0, 1)
     led.plot(0, 2)
     led.plot(0, 3)
-    basic.pause(100)
+    basic.pause(50)
     basic.clearScreen()
+    basic.pause(50)
 })
 // Level Up
 input.onPinPressed(TouchPin.P2, function () {
@@ -82,6 +85,7 @@ input.onPinPressed(TouchPin.P2, function () {
         points_per_click = 1
         upgrade_1_cost = 50
         upgrade_1_remove_cost = -50
+        upgrade_2_complication = 0
     } else {
         basic.showString("Need")
         basic.pause(100)
@@ -115,12 +119,12 @@ input.onPinPressed(TouchPin.P1, function () {
         points_per_second = 0 + times_2nd_upgrade_used
         upgrade_2_cost = upgrade_2_cost + 200
         upgrade_2_remove_cost = upgrade_2_remove_cost - 200
+        upgrade_2_complication = 1
         basic.forever(function () {
-            basic.pause(500)
+        if (upgrade_2_complication = 1) {
+            basic.pause(1000)
             points += points_per_second
-            led.plot(4, 0)
-            basic.pause(500)
-            led.unplot(4, 0)
+        }
         })
     } else {
         basic.showLeds(`
@@ -142,9 +146,10 @@ let upgrade_1_cost = 0
 let level_cost = 0
 let upgrade_2_cost = 0
 let upgrade_2_remove_cost = 0
-let points_per_second2 = 0
-let points_per_second = 0
+let upgrade_2_complication = 0
 let points = 0
+let points_per_second = 0
+let points_per_second2 = 0
 points = 0
 upgrade_2_remove_cost = -200
 upgrade_2_cost = 200
